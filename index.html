@@ -15,36 +15,37 @@
             <h2 class="span-two">Scores</h2>
             <div class="player-x-div l-b t-b b-b">
                 <h3>Player X</h3>
-
+                <h3 class="player-x-score">0</h3>
             </div>
             <div class="player-o-div r-b t-b b-b">
                 <h3>Player O</h3>
+                <h3 class="player-o-score">0</h3>
             </div>
             <div class="result-div span-two">
             </div>
         </div>
 
         <div class="game-grid-div">
-            <div class="game-box l-b t-b"><span class="box-text"></span></div>
-            <div class="game-box t-b"><span class="box-text"></span></div>
-            <div class="game-box r-b t-b"><span class="box-text"></span></div>
-            <div class="game-box l-b"><span class="box-text"></span></div>
-            <div class="game-box"><span class="box-text"></span></div>
-            <div class="game-box r-b"><span class="box-text"></span></div>
-            <div class="game-box l-b b-b"><span class="box-text"></span></div>
-            <div class="game-box b-b"><span class="box-text"></span></div>
-            <div class="game-box r-b b-b"><span class="box-text"></span></div>
+            <div class="game-box l-b t-b" id="0"></div>
+            <div class="game-box t-b" id="1"></div>
+            <div class="game-box r-b t-b" id="2"></div>
+            <div class="game-box l-b" id="3"></div>
+            <div class="game-box" id="4"></div>
+            <div class="game-box r-b" id="5"></div>
+            <div class="game-box l-b b-b" id="6"></div>
+            <div class="game-box b-b" id="7"></div>
+            <div class="game-box r-b b-b" id="8"></div>
         </div>
 
         <div class="game-info-div">
             <div class="turn-div">
-               
+                <h3>Player X turn</h3>
             </div>
 
-            <button>Reset</button>
+            <button onclick="reset()">Reset</button>
 
             <div class="game-count-div">
-              
+                <h3 class="game-count">Game Count : 0</h3>
             </div>
         </div>
     </div>
