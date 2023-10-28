@@ -11,35 +11,41 @@
 <body>
     <div class="conatiner-div">
         <h1>Tic Tac Toe</h1>
-        <div class="score-card">
-            <h2>score-card</h2>
-            <div class="player-x-div">
-                <h1>Player X</h1>
-                
+        <div class="score-card-div">
+            <h2 class="span-two">Scores</h2>
+            <div class="player-x-div l-b t-b b-b">
+                <h3>Player X</h3>
+
             </div>
-            <div class="player-y-div">
-                <h1>Player O</h1>
+            <div class="player-o-div r-b t-b b-b">
+                <h3>Player O</h3>
             </div>
-            <div class="result-div">
-            <!-- displays who won the game -->
+            <div class="result-div span-two">
             </div>
         </div>
-        <div class="game-grid">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+
+        <div class="game-grid-div">
+            <div class="game-box l-b t-b"><span class="box-text"></span></div>
+            <div class="game-box t-b"><span class="box-text"></span></div>
+            <div class="game-box r-b t-b"><span class="box-text"></span></div>
+            <div class="game-box l-b"><span class="box-text"></span></div>
+            <div class="game-box"><span class="box-text"></span></div>
+            <div class="game-box r-b"><span class="box-text"></span></div>
+            <div class="game-box l-b b-b"><span class="box-text"></span></div>
+            <div class="game-box b-b"><span class="box-text"></span></div>
+            <div class="game-box r-b b-b"><span class="box-text"></span></div>
         </div>
+
         <div class="game-info-div">
-            <!-- displays current player turn -->
-        </div>
-        <div class="game-count-div">
-            <h2>game-count</h2>
+            <div class="turn-div">
+               
+            </div>
+
+            <button>Reset</button>
+
+            <div class="game-count-div">
+              
+            </div>
         </div>
     </div>
     <script src="./src/index.js"></script>
