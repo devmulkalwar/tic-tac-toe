@@ -93,9 +93,10 @@ const resetGrid = () => {
     for (let i = 0; i < boxes.length; i++) {
         boxes[i].innerText = "";
     }
+    document.querySelector(".result-div").innerHTML = "";
     moveCount = 0;
     turn = "O";
-    document.querySelector(".result-div").innerHTML = "";
+    document.querySelector(".turn-div").innerHTML = `<h3>Player ${turn} turn </h3>`
     isGameOver = false;
 }
 
