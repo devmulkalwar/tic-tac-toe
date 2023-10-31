@@ -94,6 +94,7 @@ const resetGrid = () => {
         boxes[i].innerText = "";
     }
     moveCount = 0;
+    turn = "X";
     document.querySelector(".result-div").innerHTML = "";
     isGameOver = false;
 }
