@@ -95,9 +95,17 @@ const resetGrid = () => {
     }
     document.querySelector(".result-div").innerHTML = "";
     moveCount = 0;
-    turn = "O";
-    document.querySelector(".turn-div").innerHTML = `<h3>Player ${turn} turn </h3>`
     isGameOver = false;
+    if(gameCount%2 === 0)
+    {
+        turn = "X";
+        document.querySelector(".turn-div").innerHTML = `<h3>Player ${turn} turn </h3>`
+    }
+
+    else{
+        turn = "O";
+        document.querySelector(".turn-div").innerHTML = `<h3>Player ${turn} turn </h3>`
+    }
 }
 
 
