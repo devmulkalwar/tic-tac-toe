@@ -12,13 +12,19 @@ body{
 }
 
 h1 {
-  font-size: 1.75rem;
+  font-size: 2rem;
   margin: 10px;
+  color: #333; 
+  letter-spacing: 2px; 
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  font-weight: bold; 
 }
+
 
 h3{
   font-size: 1.25rem;
 }
+
 .conatiner-div {
   width: fit-content;
   display: flex;
@@ -59,15 +65,21 @@ h3{
   margin: 10px;
 }
 
-.game-box{
-    height: 80px;
-    width: 80px;
-    border: 1px solid black;
-    font-size: 4rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.game-box {
+  height: 80px;
+  width: 80px;
+  border: 1px solid black;
+  font-size: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
 }
+
+.game-box:hover {
+  background-color: #f0f0f0; 
+}
+
 
 .game-info-div{
     display: flex;
@@ -76,12 +88,27 @@ h3{
     gap: 10px;
 }
 
-.game-info-div button{
-    background-color:rgb(255, 9, 9) ;
-    height: 30px;
-    width: 100px;
-    border-radius: 10px;
+.button-div{
+  display: flex;
+  gap: 10px;
 }
+.button-div button {
+  background-color: rgb(255, 9, 9);
+  color: white;
+  height: 40px;
+  width: 120px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-div button:hover {
+  background-color: rgb(200, 0, 0);
+}
+
 
 /* utility classes */
 .r-b{
