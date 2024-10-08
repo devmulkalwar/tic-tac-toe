@@ -1,16 +1,16 @@
-//variable declaration
+// Variable declaration
 let turn = "X";
 let playerXScore = 0;
 let playerOScore = 0;
 let gameCount = 0;
 let moveCount = 0;
 let isGameOver = false;
-let currentMode = 2;
+let currentMode = 2; // 1 for Vs Human, 2 for Vs Bot
 let boxes = Array.from(document.querySelectorAll(".game-box"));
 
-console.log("Welcome to tic tac toe game");
+console.log("Welcome to the Tic Tac Toe game");
 
-//changes players turn
+// Changes players' turn
 const changeTurn = () => {
     return turn === "X" ? "O" : "X";
 }
@@ -21,7 +21,7 @@ const checkResult = () => {
     checkWin();
 }
 
-//checks for winner
+// Checks for a winner
 const checkWin = () => {
     const wins = [
         [0, 1, 2],
@@ -32,10 +32,9 @@ const checkWin = () => {
         [2, 5, 8],
         [0, 4, 8],
         [2, 4, 6],
-    ]
+    ];
 
-    for (let i = 0; i < 8; i++) {
-
+    for (let i = 0; i < wins.length; i++) {
         let idx1 = wins[i][0];
         let idx2 = wins[i][1];
         let idx3 = wins[i][2];
@@ -43,14 +42,13 @@ const checkWin = () => {
         if ((boxes[idx1].innerText === boxes[idx2].innerText) && (boxes[idx2].innerText === boxes[idx3].innerText)) {
             if ((boxes[idx1].innerText !== "") && (boxes[idx2].innerText !== "") && (boxes[idx3].innerText !== "")) {
                 document.querySelector(".result-div").innerHTML = `<h3> Player ${boxes[idx1].innerText} won !!</h3>`;
-                console.log(`Player ${boxes[idx1].innerText}  won`);
+                console.log(`Player ${boxes[idx1].innerText} won`);
 
                 if (boxes[idx1].innerText === "X") {
                     playerXScore++;
                     console.log(`Player X : ${playerXScore}`);
                     document.querySelector(".player-x-score").innerHTML = playerXScore;
-                }
-                else {
+                } else {
                     playerOScore++;
                     console.log(`Player O : ${playerOScore}`);
                     document.querySelector(".player-o-score").innerHTML = playerOScore;
@@ -60,7 +58,6 @@ const checkWin = () => {
                 isGameOver = true;
             }
         }
-
     }
 }
 
@@ -75,7 +72,7 @@ const checkDraw = () => {
     }
 }
 
-//function to reset game
+// Function to reset the game
 const reset = () => {
     resetGrid();
     document.querySelector(".player-x-score").innerHTML = 0;
@@ -90,7 +87,7 @@ const reset = () => {
     isGameOver = false;
 }
 
-//function to reset game grid
+// Function to reset the game grid
 const resetGrid = () => {
     for (let i = 0; i < boxes.length; i++) {
         boxes[i].innerText = "";
@@ -111,11 +108,9 @@ const resetGrid = () => {
             document.querySelector(".turn-div").innerHTML = `<h3>Player ${turn} turn </h3>`;
         }
     } else {
-        vsBotMode();
+        document.querySelector(".turn-div").innerHTML = `<h3>Player ${turn} turn </h3>`;
     }
 };
-
-
 
 // Function to handle box click
 const handleBoxClick = (index) => {
@@ -126,47 +121,43 @@ const handleBoxClick = (index) => {
         checkResult();
 
         if (!isGameOver) {
-
             turn = changeTurn();
             document.querySelector(".turn-div").innerHTML = `<h3>Player ${turn} turn </h3>`;
+
+            // Bot makes a move only after a player move in vsBotMode
             if (moveCount % 2 === 0 && currentMode === 2) {
-                botMoveGenerator();
+                setTimeout(botMoveGenerator, 500); // Added a slight delay for the bot move
             }
         }
-    }
-    else {
+    } else {
         console.log("Invalid move");
     }
 }
 
-// function to check empty boxes
+// Function to check empty boxes
 const findEmptyBox = () => {
     let index = [];
     for (let i = 0; i < boxes.length; i++) {
         if (boxes[i].innerText === "") {
-            index[i] = i;
+            index.push(i);
         }
     }
-    return index;
+    return index; // Return only valid indices
 }
 
-//function to generate bot moves
+// Function to generate bot moves
 const botMoveGenerator = () => {
-    let randomMove = Math.floor(Math.random() * 9);
-    console.log("random move : " + randomMove);
-    if (findEmptyBox().includes(randomMove)) {
-        turn = "X";
+    let emptyBoxes = findEmptyBox();
+    if (emptyBoxes.length > 0) {
+        let randomMove = emptyBoxes[Math.floor(Math.random() * emptyBoxes.length)];
+        console.log("Bot move: " + randomMove);
         handleBoxClick(randomMove);
-    }
-    else {
-        botMoveGenerator();
     }
 }
 
 const vsHumanMode = () => {
     console.log('Switching to Vs Human Mode');
     // Add event listeners to each box
-
     for (let i = 0; i < boxes.length; i++) {
         boxes[i].addEventListener("click", () => {
             console.log(`box ${i + 1} clicked!!`);
@@ -176,23 +167,12 @@ const vsHumanMode = () => {
 }
 
 const vsBotMode = () => {
-    if (moveCount % 2 === 0) {
-        console.log('Switching to Vs Bot Mode');
-        botMoveGenerator();
-    }
-
-    else {
-        for (let i = 0; i < boxes.length; i++) {
-            boxes[i].addEventListener("click", () => {
-                console.log(`box ${i + 1} clicked!!`);
-                handleBoxClick(i);
-            });
-        }
-    }
-
+    console.log('Switching to Vs Bot Mode');
+    // Bot plays first move immediately after switching to bot mode
+    setTimeout(botMoveGenerator, 500); // Give a slight delay for the first bot move
 }
 
-//function to toggle between vsBotMode and vsHumanMode
+// Function to toggle between vsBotMode and vsHumanMode
 const toggleMode = () => {
     const button = document.querySelector('.toggle-btn');
     currentMode = (currentMode === 1) ? 2 : 1;
@@ -210,8 +190,9 @@ const toggleMode = () => {
         button.classList.add('vs-bot-mode');
         resetGrid();
         reset();
-        vsBotMode();
+        vsBotMode(); // Call vsBotMode to initiate bot play
     }
 }
 
-toggleMode();
+// Initialize the game with Vs Human Mode or Vs Bot Mode
+toggleMode(); // Call this once to set up the initial mode
